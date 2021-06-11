@@ -1,6 +1,6 @@
 {
     "name": "encypt-decypt",
-    "displayName": "Encrypt - Decrypt string",
+    "displayName": "Encrypt-Decrypt",
     "description": "Encrypt Decrypt AES CBC Mode",
     "icon": "images/logo.png",
     "version": "1.0.0",
