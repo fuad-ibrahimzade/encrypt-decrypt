@@ -1,0 +1,88 @@
+{
+    "name": "encypt-decypt",
+    "displayName": "Encrypt - Decrypt string",
+    "description": "Encrypt Decrypt AES CBC Mode",
+    "icon": "images/logo.png",
+    "version": "1.0.0",
+    "publisher": "qaqulya",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fuad-ibrahimzade/Encrypt-Decrypt"
+    },
+    "engines": {
+        "vscode": "^1.25.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:encryptDecrypt.AESEncrypt",
+        "onCommand:encryptDecrypt.AESDecrypt",
+        "onCommand:encryptDecrypt.ForgetPassword",
+        "onCommand:encryptDecrypt.SetPassword"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "encryptDecrypt.AESEncrypt",
+                "title": "Encode using AES Encryption",
+                "category": "ED"
+            },
+            {
+                "command": "encryptDecrypt.AESDecrypt",
+                "title": "Decode using AES Decryption",
+                "category": "ED"
+            },
+            {
+                "command": "encryptDecrypt.ForgetPassword",
+                "title": "Forget Password",
+                "category": "ED"
+            },
+            {
+                "command": "encryptDecrypt.SetPassword",
+                "title": "Set Password",
+                "category": "ED"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "encryptDecrypt.AESEncrypt",
+                    "group": "ed"
+                },
+                {
+                    "command": "encryptDecrypt.AESDecrypt",
+                    "group": "ed"
+                },
+                {
+                    "command": "encryptDecrypt.ForgetPassword",
+                    "group": "ed"
+                },
+                {
+                    "command": "encryptDecrypt.SetPassword",
+                    "group": "ed"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "lint": "eslint -c .eslintrc.js --ext .ts src",
+        "watch": "tsc -watch -p ./",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "dependencies": {
+        "crypto-js": "^4.0.0"
+    },
+    "devDependencies": {
+        "@types/mocha": "^7.0.2",
+        "@types/node": "^13.13.5",
+        "@types/vscode": "^1.25.0",
+        "@typescript-eslint/eslint-plugin": "2.31.0",
+        "@typescript-eslint/parser": "2.31.0",
+        "eslint": "^7.0.0",
+        "typescript": "^3.8.3"
+    }
+}
