@@ -116,8 +116,11 @@ export class EncryptDecrypt implements interfaces.IEncryptDecrypt, vscode.Dispos
     AESEncrypt(): void {
         this.askPassword().then((password) => {
             this.changeText(txt => {
-                let encrypted = cryptoJs.AES.encrypt(cryptoJs.enc.Utf8.parse(txt),this.key,{keySize: 128 / 8,iv: this.iv,mode: cryptoJs.mode.CBC,padding: cryptoJs.pad.Pkcs7,});
-                return encrypted.toString();
+                // let encrypted = cryptoJs.AES.encrypt(cryptoJs.enc.Utf8.parse(txt),this.key,{keySize: 128 / 8,iv: this.iv,mode: cryptoJs.mode.CBC,padding: cryptoJs.pad.Pkcs7,});
+                // return encrypted.toString();
+                
+                const encrypted = cryptoJs.AES.encrypt(txt, this.context.globalState.get('ed.password')).toString();
+                return encrypted;
                 // return cryptoJs.AES.encrypt(cryptoJs.enc.Utf8.parse(txt), password).toString();
                 // return cryptoJs.AES.encrypt(cryptoJs.enc.Utf8.parse(txt), this.key, { iv: this.iv }).toString();
                 // return cryptoJs.AES.encrypt(cryptoJs.enc.Utf8.parse(txt), this.key, { 
@@ -137,14 +140,16 @@ export class EncryptDecrypt implements interfaces.IEncryptDecrypt, vscode.Dispos
     AESDecrypt(): void {
         this.askPassword().then((password) => {
             this.changeText(txt => {
-                let decrypted = cryptoJs.AES.decrypt(txt, this.key, {
-                    keySize: 128 / 8,
-                    iv: this.iv,
-                    mode: cryptoJs.mode.CBC,
-                    padding: cryptoJs.pad.Pkcs7,
-                }).toString(cryptoJs.enc.Utf8);
-                return decrypted
+                // let decrypted = cryptoJs.AES.decrypt(txt, this.key, {
+                //     keySize: 128 / 8,
+                //     iv: this.iv,
+                //     mode: cryptoJs.mode.CBC,
+                //     padding: cryptoJs.pad.Pkcs7,
+                // }).toString(cryptoJs.enc.Utf8);
+                // return decrypted
 
+                const decrypted  = cryptoJs.AES.decrypt(txt, this.context.globalState.get('ed.password')).toString(cryptoJs.enc.Utf8);
+                return decrypted
                 // return cryptoJs.AES.decrypt(txt, password).toString(cryptoJs.enc.Utf8);
                 // return cryptoJs.AES.decrypt(txt, this.key, { iv: this.iv }).toString(cryptoJs.enc.Utf8)
                 // return cryptoJs.AES.decrypt(txt, this.key, { 
